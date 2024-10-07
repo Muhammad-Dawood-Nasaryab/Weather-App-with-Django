@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "main/styles.css" %}">
+    <title>Weather App</title>
+</head>
+
+<body>
+
+    <nav>
+        <h1>Weather App</h1>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="search">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="city" name="city" required>
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+
+            <div class="card">
+                {% if name %}
+                    <h2>Weather in <span>{{ name }}</span></h2>
+                    <div class="data">
+                        <p>Temperature: {{ temperature|floatformat:1 }}°C</p>
+                        <p>Condition: {{ condition }}</p>
+                        <p>Description: {{ description }}</p>
+                        <p>Humidity: {{ humidity }}%</p>
+                    </div>
+                {% elif error %}
+                    <p>Error: {{ error }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
