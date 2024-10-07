@@ -10,7 +10,7 @@ def index(request):
 
         try:
             source = urllib.request.urlopen(
-                f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid=e93a9abb570ba80b0d2eae7d5aeeef13"
+                f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid=your_appid_key_here"
             ).read()
             data = json.loads(source)
 
